@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>My Expense Tracker</h1>
+            <p>Keep track of where your money goes.</p>
+        </div>
+        <button id="themeButton" type="button">Dark mode</button>
+    </header>
+
+    <main>
+        <section class="summary">
+            <div class="card">
+                <p>Total expenses</p>
+                <h2 id="totalAmount">₹0</h2>
+            </div>
+            <div class="card">
+                <p>Number of expenses</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+            <div class="card">
+                <p>Monthly budget</p>
+                <h2 id="budgetDisplay">₹10000</h2>
+                <p id="budgetMessage">You are within your budget.</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2 id="formHeading">Add an expense</h2>
+            <form id="expenseForm">
+                <div class="form-grid">
+                    <div>
+                        <label for="expenseTitle">Expense name</label>
+                        <input type="text" id="expenseTitle" placeholder="e.g. Lunch" minlength="2" maxlength="50" required>
+                    </div>
+                    <div>
+                        <label for="expenseAmount">Amount (₹)</label>
+                        <input type="number" id="expenseAmount" placeholder="e.g. 250" min="0.01" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" required>
+                            <option value="">Choose a category</option>
+                            <option>Food</option>
+                            <option>Transport</option>
+                            <option>Shopping</option>
+                            <option>Bills</option>
+                            <option>Health</option>
+                            <option>Education</option>
+                            <option>Entertainment</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                </div>
+                <p id="formError" class="error" aria-live="polite"></p>
+                <div class="form-buttons">
+                    <button type="submit" id="saveButton" class="main-button">Add expense</button>
+                    <button type="button" id="cancelEditButton" class="light-button hidden">Cancel edit</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Expenses</h2>
+                    <p class="muted">Edit or delete an expense. You can undo your last deletion.</p>
+                </div>
+                <button type="button" id="undoButton" class="light-button" disabled>Undo last delete</button>
+            </div>
+
+            <div class="filters">
+                <div>
+                    <label for="searchInput">Search</label>
+                    <input type="text" id="searchInput" placeholder="Search by name">
+                </div>
+                <div>
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="All">All categories</option>
+                        <option>Food</option>
+                        <option>Transport</option>
+                        <option>Shopping</option>
+                        <option>Bills</option>
+                        <option>Health</option>
+                        <option>Education</option>
+                        <option>Entertainment</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="monthFilter">Month</label>
+                    <input type="month" id="monthFilter">
+                </div>
+                <div>
+                    <label for="sortSelect">Sort by</label>
+                    <select id="sortSelect">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                        <option value="high">Highest amount</option>
+                        <option value="low">Lowest amount</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseList"></tbody>
+                </table>
+            </div>
+            <p id="emptyMessage" class="empty-message">No expenses yet. Add your first expense above.</p>
+            <div class="table-bottom">
+                <span id="listCount">0 expenses</span>
+                <button type="button" id="exportButton" class="light-button">Export CSV</button>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Spending by category</h2>
+            <p class="muted">A simple breakdown of your expenses.</p>
+            <div id="categorySummary"></div>
+        </section>
+
+        <section class="panel">
+            <h2>Monthly budget</h2>
+            <p class="muted">Choose how much you want to spend in the current month.</p>
+            <form id="budgetForm" class="budget-form">
+                <div>
+                    <label for="budgetInput">Budget amount (₹)</label>
+                    <input type="number" id="budgetInput" min="1" step="1" required>
+                </div>
+                <button type="submit" class="main-button">Save budget</button>
+            </form>
+            <p id="budgetFeedback" class="muted" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>My Expense Tracker · Built with HTML, CSS and JavaScript</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
