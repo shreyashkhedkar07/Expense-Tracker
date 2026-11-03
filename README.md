@@ -92,3 +92,6 @@ Vercel also supports this static project: import the GitHub repository at https:
 ## Note
 
 Expenses and settings are saved in the current browser only. Clearing browser data can remove them. This is a student project, not a bank-connected app.
+## GitHub Upload
+
+Project successfully maintained using Git and GitHub.
